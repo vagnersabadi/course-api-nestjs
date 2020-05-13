@@ -1,8 +1,8 @@
 import { Book } from './../interfaces/book.interface';
 import { BookModel } from './../../models/books.model';
 import { Injectable } from "@nestjs/common";
-import { InjectModel } from "@nestjs/mongoose";
-import { Model } from 'mongoose';
+import { InjectModel, InjectConnection } from "@nestjs/mongoose";
+import { Model, Connection } from 'mongoose';
 
 @Injectable()
 export class BookRepository {

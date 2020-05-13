@@ -1706,11 +1706,11 @@
         "signature": "8f1241f5d9f0d3d72117768b3c974e462840fbd85026fb66685078945404cf2f"
       },
       "../src/mongo/repository/book.repository.ts": {
-        "version": "770b0d9b3be35ad96453bcc4dc671776fed21bbd46049e1dedad84a77701c018",
+        "version": "4bd535d07089d2f3a755b47a54877c7b35a9a289c5af1056a509f6fab220d2aa",
         "signature": "9d5001386a38ad24ec81b838749f3f17e62d52de2a4b3d774f8c5b38f07af162"
       },
       "../src/services/book/book.service.ts": {
-        "version": "10df6633042c4c2ed112f6ba2014547ee5836dfedb51e7e8c2d1c075b3d53bf7",
+        "version": "3d7083b21a48925d3ea5858f142fef3de7647f81fbc608200516194d9cca4fb7",
         "signature": "1bc83d10b5dcbb3bf01191a490efe066f2dd371230d053e02e701d261af3442f"
       },
       "../src/mongo/schema/author.schema.ts": {
@@ -11733,10 +11733,11 @@
       "../node_modules/@nestjs/mongoose/dist/mongoose.module.d.ts",
       "../node_modules/@nestjs/mongoose/dist/index.d.ts",
       "../node_modules/@nestjs/mongoose/index.d.ts",
-      "../src/mongo/repository/book.repository.ts",
       "../src/services/book/book.service.ts",
       "../src/mongo/schema/author.schema.ts",
       "../src/mongo/schema/book.schema.ts",
+      "../src/controllers/books/books.controller.ts",
+      "../src/app.module.ts",
       "../node_modules/@nestjs/core/adapters/http-adapter.d.ts",
       "../node_modules/@nestjs/core/adapters/index.d.ts",
       "../node_modules/@nestjs/core/injector/module-token-factory.d.ts",
@@ -11822,8 +11823,7 @@
       "../node_modules/@types/webpack/index.d.ts",
       "../node_modules/@types/yargs-parser/index.d.ts",
       "../node_modules/@types/yargs/index.d.ts",
-      "../src/controllers/books/books.controller.ts",
-      "../src/app.module.ts"
+      "../src/mongo/repository/book.repository.ts"
     ]
   },
   "version": "3.8.3"

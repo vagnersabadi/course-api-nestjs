@@ -12,6 +12,7 @@ export class BooksService {
 
     async getAllBooks(): Promise<Book[]> {
         const allBooks = await this.bookRepository.getAllBooks();
+        // cso estiver vazio !0
         if (!allBooks.length)
             throw new BadRequestException('There are no books registered yet');
         else
