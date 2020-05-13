@@ -1,9 +1,7 @@
 import { Book } from './../../mongo/interfaces/book.interface';
 import { BookRepository } from './../../mongo/repository/book.repository';
 import { BookModel } from './../../models/books.model';
-import { ObjectId } from 'mongoose';
 import { Injectable, BadRequestException } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class BooksService {
@@ -36,47 +34,47 @@ export class BooksService {
         return await this.bookRepository.saveBook(newBook);
     }
 
-    async deleteBook(bookID: string) {
+    // async deleteBook(bookID: string) {
 
-        try {
-            const bookExists = await this.bookRepository.findById(bookID);
+    //     try {
+    //         const bookExists = await this.bookRepository.findById(bookID);
 
-            if (bookExists) {
-                const deletedBook = await this.bookRepository.deleteBook(bookID);
+    //         if (bookExists) {
+    //             const deletedBook = await this.bookRepository.deleteBook(bookID);
 
-                if (deletedBook)
-                    return 'This book was deleted successfully';
+    //             if (deletedBook)
+    //                 return 'This book was deleted successfully';
 
-            } else {
-                throw new BadRequestException('This book does not exist');
-            }
+    //         } else {
+    //             throw new BadRequestException('This book does not exist');
+    //         }
 
-        } catch (e) {
-            throw new BadRequestException('This book does not exist');
-        }
+    //     } catch (e) {
+    //         throw new BadRequestException('This book does not exist');
+    //     }
 
-    }
+    // }
 
-    async updateBook(bookID: string, book: BookModel) {
+    // async updateBook(bookID: string, book: BookModel) {
 
-        try {
-            const bookExists = await this.bookRepository.findById(bookID);
+    //     try {
+    //         const bookExists = await this.bookRepository.findById(bookID);
 
-            if (bookExists) {
-                const updatedBook = await this.bookRepository.updateBook(bookID, book);
+    //         if (bookExists) {
+    //             const updatedBook = await this.bookRepository.updateBook(bookID, book);
 
-                if (updatedBook)
-                    return 'This book was updated successfully';
+    //             if (updatedBook)
+    //                 return 'This book was updated successfully';
 
-            } else {
-                throw new BadRequestException('This book does not exist');
-            }
+    //         } else {
+    //             throw new BadRequestException('This book does not exist');
+    //         }
 
-        } catch (e) {
-            throw new BadRequestException('This book does not exist');
-        }
+    //     } catch (e) {
+    //         throw new BadRequestException('This book does not exist');
+    //     }
 
-    }
+    // }
 
     async getBookByAuthorName(authorName: string): Promise<Book[]> {
 

@@ -1,8 +1,8 @@
 import { Book } from './../interfaces/book.interface';
 import { BookModel } from './../../models/books.model';
 import { Injectable } from "@nestjs/common";
-import { InjectModel, InjectConnection } from "@nestjs/mongoose";
-import { Model, Connection, ObjectId } from 'mongoose';
+import { InjectModel } from "@nestjs/mongoose";
+import { Model } from 'mongoose';
 
 @Injectable()
 export class BookRepository {
@@ -11,6 +11,7 @@ export class BookRepository {
         @InjectModel('books') private readonly bookModel: Model<Book>
     ) { }
 
+    // retorna todos livros em ordem alfabetica
     async getAllBooks(): Promise<Book[]> {
         return await this.bookModel.find({}, { __v: false }).sort({ name: + 1 }).exec();
     }
@@ -24,13 +25,13 @@ export class BookRepository {
         return await this.bookModel.findById(bookID, { __v: false });
     }
 
-    async deleteBook(bookID: string): Promise<Book> {
-        return await this.bookModel.findOneAndDelete({ _id: bookID });
-    }
+    // async deleteBook(bookID: string): Promise<Book> {
+    //     return await this.bookModel.findOneAndDelete({ _id: bookID });
+    // }
 
-    async updateBook(bookID: string, book: BookModel): Promise<Book> {
-        return await this.bookModel.replaceOne({ _id: bookID }, book);
-    }
+    // async updateBook(bookID: string, book: BookModel): Promise<Book> {
+    //     return await this.bookModel.replaceOne({ _id: bookID }, book);
+    // }
 
     async findBookByName(bookName: string): Promise<Book[]> {
         return await this.bookModel.find({ name: { '$regex': bookName, '$options': 'i' } }, { __v: false });

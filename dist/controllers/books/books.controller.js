@@ -12,48 +12,66 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const book_service_1 = require("./../../services/book/book.service");
+const books_model_1 = require("./../../models/books.model");
 const common_1 = require("@nestjs/common");
 let BooksController = class BooksController {
+    constructor(booksService) {
+        this.booksService = booksService;
+    }
     getAllBooks() {
-        return 'TODOS BOOKS';
+        return this.booksService.getAllBooks();
     }
-    saveBook(newBook) {
-        return 'saveBook';
+    async getBookById(bookID) {
+        return await this.booksService.getBookById(bookID);
     }
-    updateBook() {
-        return 'updateBook';
+    async getBookByName(bookName) {
+        return await this.booksService.getBookByName(bookName);
     }
-    deleteBook() {
-        return 'DELETE';
+    async getBookByAuthorName(authorName) {
+        return await this.booksService.getBookByAuthorName(authorName);
+    }
+    async saveBook(newBook) {
+        return await this.booksService.saveBook(newBook);
     }
 };
 __decorate([
     common_1.Get(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", String)
+    __metadata("design:returntype", Promise)
 ], BooksController.prototype, "getAllBooks", null);
+__decorate([
+    common_1.Get('id/:bookID'),
+    __param(0, common_1.Param('bookID')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], BooksController.prototype, "getBookById", null);
+__decorate([
+    common_1.Get('name/:bookName'),
+    __param(0, common_1.Param('bookName')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], BooksController.prototype, "getBookByName", null);
+__decorate([
+    common_1.Get('author/:authorName'),
+    __param(0, common_1.Param('authorName')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], BooksController.prototype, "getBookByAuthorName", null);
 __decorate([
     common_1.Post(),
     __param(0, common_1.Body()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:paramtypes", [books_model_1.BookModel]),
+    __metadata("design:returntype", Promise)
 ], BooksController.prototype, "saveBook", null);
-__decorate([
-    common_1.Patch(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], BooksController.prototype, "updateBook", null);
-__decorate([
-    common_1.Delete(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], BooksController.prototype, "deleteBook", null);
 BooksController = __decorate([
-    common_1.Controller('books')
+    common_1.Controller('books'),
+    __metadata("design:paramtypes", [book_service_1.BooksService])
 ], BooksController);
 exports.BooksController = BooksController;
 //# sourceMappingURL=books.controller.js.map
