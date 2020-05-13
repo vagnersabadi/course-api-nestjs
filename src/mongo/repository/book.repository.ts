@@ -1,4 +1,4 @@
-import { Book } from './../../Mongo/Interfaces/book.interface';
+import { Book } from './../interfaces/book.interface';
 import { BookModel } from './../../models/books.model';
 import { Injectable } from "@nestjs/common";
 import { InjectModel, InjectConnection } from "@nestjs/mongoose";
