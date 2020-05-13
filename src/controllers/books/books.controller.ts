@@ -1,30 +1,49 @@
-import { Controller, Get, Post, Patch, Delete, Body } from '@nestjs/common';
+import { Book } from './../../Mongo/Interfaces/book.interface';
+import { BooksService } from './../../services/book/book.service';
+import { BookModel } from './../../models/books.model';
+import { Controller, Get, Post, Body, BadRequestException, Delete, Param, Put, Patch } from '@nestjs/common';
 
 // http://localhost:3000/books
 @Controller('books')
 export class BooksController {
 
+    constructor(
+        private readonly booksService: BooksService
+    ) { }
+
     @Get()
-    getAllBooks(): string {
-        return 'TODOS BOOKS';
+    getAllBooks(): Promise<Book[]> {
+        return this.booksService.getAllBooks();
+    }
+
+    @Get('id/:bookID')
+    async getBookById(@Param('bookID') bookID: string) {
+        return await this.booksService.getBookById(bookID);
+    }
+
+    @Get('name/:bookName')
+    async getBookByName(@Param('bookName') bookName: string) {
+        return await this.booksService.getBookByName(bookName);
+    }
+
+    @Get('author/:authorName')
+    async getBookByAuthorName(@Param('authorName') authorName: string) {
+        return await this.booksService.getBookByAuthorName(authorName);
     }
 
     @Post()
-    saveBook(@Body() newBook: string) {
-        return 'saveBook';
+    async saveBook(@Body() newBook: BookModel): Promise<Book> {
+        return await this.booksService.saveBook(newBook);
     }
 
-    @Patch()
-    updateBook() {
-        return 'updateBook';
-
+    @Delete(':bookID')
+    async deleteBook(@Param('bookID') bookID: string) {
+        return await this.booksService.deleteBook(bookID);
     }
 
-    @Delete()
-    deleteBook() {
-        return 'DELETE';
-
+    @Patch(':bookID')
+    async updateBook(@Param('bookID') bookID: string, @Body() book: BookModel) {
+        return await this.booksService.updateBook(bookID, book);
     }
-
 
 }
