@@ -36,14 +36,14 @@ export class BooksController {
         return await this.booksService.saveBook(newBook);
     }
 
-    // @Delete(':bookID')
-    // async deleteBook(@Param('bookID') bookID: string) {
-    //     return await this.booksService.deleteBook(bookID);
-    // }
+    @Delete(':bookID')
+    async deleteBook(@Param('bookID') bookID: string) {
+        return await this.booksService.deleteBook(bookID);
+    }
 
-    // @Patch(':bookID')
-    // async updateBook(@Param('bookID') bookID: string, @Body() book: BookModel) {
-    //     return await this.booksService.updateBook(bookID, book);
-    // }
+    @Patch(':bookID')
+    async updateBook(@Param('bookID') bookID: string, @Body() book: BookModel) {
+        return await this.booksService.updateBook(bookID, book);
+    }
 
 }
